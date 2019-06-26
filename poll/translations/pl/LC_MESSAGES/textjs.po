@@ -64,3 +64,6 @@ msgid ""
 "in a way that would allow someone to answer the poll if the image did not "
 "load."
 msgstr "Wymagany jest URL obrazu, tekst lub oba parametry. Jeśli dodajesz obraz, musisz też określić tekst alternatywny, które opisuje obraz w taki sposób, żeby respondent mógł odpowiedzieć na pytanie, nawet jeśli obraz się nie wczyta."
+
+msgid "Survey"
+msgstr "Sondaż"
