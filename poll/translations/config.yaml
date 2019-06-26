@@ -17,4 +17,4 @@ locales:
 
 # The locales used for fake-accented English, for testing.
 dummy_locales:
-    #- eo
+    - eo
