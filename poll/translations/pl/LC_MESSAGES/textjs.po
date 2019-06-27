@@ -9,35 +9,35 @@ msgstr "Wyniki"
 #: poll/public/handlebars/poll_results.handlebars:31
 #: poll/public/handlebars/survey_results.handlebars:39
 msgid "Submit"
-msgstr "Prze≈õlij"
+msgstr "Wyúlij"
 
 #: poll/public/handlebars/poll_results.handlebars:33
 #: poll/public/handlebars/survey_results.handlebars:41
 msgid "Results gathered from {total} respondent."
 msgid_plural "Results gathered from {total} respondents."
-msgstr[0] "Wyniki zebrane od {total} respondenta."
-msgstr[1] "Wyniki zebrane od {total} respondent√≥w."
+msgstr[0] "Wyniki uzyskane od {total} respondenta."
+msgstr[1] "Wyniki uzyskane od {total} respondentÛw."
 
 #: poll/public/handlebars/poll_results.handlebars:37
 #: poll/public/handlebars/survey_results.handlebars:46
 msgid "Feedback"
-msgstr "Informacja zwrotna"
+msgstr "Komentarz"
 
 #: poll/public/handlebars/poll_studio.handlebars:6
 msgid "move poll up"
-msgstr "przesu≈Ñ sonda≈º do g√≥ry"
+msgstr "przenieú ankietÍ wyøej"
 
 #: poll/public/handlebars/poll_studio.handlebars:7
 msgid "move poll down"
-msgstr "przesu≈Ñ sonda≈º w d√≥≈Ç"
+msgstr "przenieú ankietÍ niøej"
 
 #: poll/public/handlebars/poll_studio.handlebars:9
 msgid "Delete"
-msgstr "Usu≈Ñ"
+msgstr "UsuÒ"
 
 #: poll/public/handlebars/poll_studio.handlebars:11
 msgid "Answer"
-msgstr "Odpowied≈∫"
+msgstr "Odpowiedü"
 
 #: poll/public/handlebars/poll_studio.handlebars:12
 msgid "Question"
@@ -45,17 +45,17 @@ msgstr "Pytanie"
 
 #: poll/public/handlebars/poll_studio.handlebars:16
 msgid "Image URL"
-msgstr "URL obrazu"
+msgstr "Adres URL obrazka"
 
 #: poll/public/handlebars/poll_studio.handlebars:18
 msgid "Image alternative text"
-msgstr "Tekst alternatywny obrazu"
+msgstr "Opis alternatywny obrazka"
 
 #: poll/public/handlebars/poll_studio.handlebars:23
 msgid ""
 "You can make limited use of Markdown in answer texts, preferably only bold "
 "and italics."
-msgstr "Nie mo≈ºesz w pe≈Çni u≈ºywasz znacznik√≥w Markdown w tek≈õcie odpowiedzi, u≈ºywaj g≈Ç√≥wnie znacznik√≥w pogrubienia i kursywy."
+msgstr "W treúciach odpowiedzi dopuszczalny jest Markdown w ograniczonym wymiarze - pogrubienia i kursywy."
 
 #: poll/public/handlebars/poll_studio.handlebars:27
 msgid ""
@@ -63,7 +63,4 @@ msgid ""
 "image, you must also provide an alternative text that describes the image "
 "in a way that would allow someone to answer the poll if the image did not "
 "load."
-msgstr "Wymagany jest URL obrazu, tekst lub oba parametry. Je≈õli dodajesz obraz, musisz te≈º okre≈õliƒá tekst alternatywny, kt√≥re opisuje obraz w taki spos√≥b, ≈ºeby respondent m√≥g≈Ç odpowiedzieƒá na pytanie, nawet je≈õli obraz siƒô nie wczyta."
-
-msgid "Survey"
-msgstr "Sonda≈º"
+msgstr "Naleøy wprowadziÊ adres URL obrazka lub tekst, a najlepiej oba. Dodajπc obrazek, naleøy pamiÍtaÊ o umieszczeniu opisu alternatywnego, ktÛry pozwoli na udzielenie odpowiedzi rÛwnieø w przypadku jeúli obrazek siÍ nie wczyta."
