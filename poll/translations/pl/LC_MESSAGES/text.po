@@ -227,7 +227,8 @@ msgid ""
 msgstr ""
 "\n"
 "        Wykorzystałeś %(submissions_count_s)s spośród %(max_submissions_s)s możliwych zgłoszeń.\n"
-
+"      "
+     
 #: poll/public/html/poll.html:52 poll/public/html/poll_edit.html:27
 #: poll/public/html/survey.html:64
 msgid "Feedback"
