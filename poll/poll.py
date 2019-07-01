@@ -786,10 +786,10 @@ class PollBlock(PollBase, CSVExportMixin):
 class SurveyBlock(PollBase, CSVExportMixin):
     # pylint: disable=too-many-instance-attributes
 
-    display_name = String(default=_('Sondaż'))
+    display_name = String(default=_('Ankieta'))
     # The display name affects how the block is labeled in the studio,
     # but either way we want it to say 'Poll' by default on the page.
-    block_name = String(default=_('Ankieta'))
+    block_name = String(default=_(' '))
     answers = List(
         default=[
             ('Y', _('Tak')),

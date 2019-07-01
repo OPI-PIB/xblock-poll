@@ -68,6 +68,7 @@
         </li>
         <li class="field comp-setting-entry is-set">
             <p>
+				<span class="tip setting-help">
                 <strong>{% trans 'Notes:' %}</strong>
                 {% blocktrans %}
                     If you change an answer's text, all students who voted for that choice will have their votes updated to
@@ -75,14 +76,17 @@
                     If you delete an answer, any votes for that answer will also be deleted. Students whose choices are deleted
                     may vote again, but will not lose course progress.
                 {% endblocktrans %}
+                </span>
             </p>
             {%  if multiquestion %}
                 <p>
+					<span class="tip setting-help">
                     {% blocktrans %}
                         Questions must be similarly cared for. If a question's text is changed, any votes for that question will remain.
                         If a question is deleted, any student who previously took the survey will be permitted to retake it, but will not
                         lose course progress.
                     {% endblocktrans %}
+                    </span>
                 </p>
             {% endif %}
         </li>
