@@ -44,4 +44,6 @@
 
 .poll-move {
     float: right;
+
 }
+[class*="view-"] .modal-window .xblock-actions .action-primary:hover { background-color:#00581B !important }
