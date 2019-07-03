@@ -13,9 +13,11 @@
         {% if not multiquestion %}
             <li class="field comp-setting-entry is-set">
                 <h2><label for="poll-question-editor">{% trans 'Question/Prompt' %}</label></h2>
+                <span class="tip setting-help">
                 {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
                     {{link_start}}Markdown Syntax{{link_end}} is supported.
                 {% endblocktrans %}
+                </span>
                 <div id="poll-question-editor-container">
                     <textarea class="input setting-input" name="question" id="poll-question-editor"
                               aria-describedby="poll-question-editor-help">{{question}}</textarea>
@@ -26,9 +28,9 @@
         <li class="field comp-setting-entry is-set">
             <label class="label setting-label poll-setting-label" for="poll-feedback-editor">{% trans 'Feedback' %}</label><br/>
             <span class="tip setting-help">
-				{% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
-					{{link_start}}Markdown Syntax{{link_end}} is supported.
-				{% endblocktrans %}
+                {% blocktrans with link_start='<a href="//daringfireball.net/projects/markdown/syntax" target="_blank">' link_end='</a>' %}
+                    {{link_start}}Markdown Syntax{{link_end}} is supported.
+                {% endblocktrans %}
 			</span>
             <div id="poll-feedback-editor-container">
                 <textarea class="input setting-input" name="feedback" id="poll-feedback-editor"
