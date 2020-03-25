@@ -17,6 +17,8 @@ msgid "Results gathered from {total} respondent."
 msgid_plural "Results gathered from {total} respondents."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: poll/public/handlebars/poll_results.handlebars:37
 #: poll/public/handlebars/survey_results.handlebars:46
