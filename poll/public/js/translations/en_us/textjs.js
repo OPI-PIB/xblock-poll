@@ -34,47 +34,41 @@
   /* formatting library */
 
   django.formats = {
-    "DATETIME_FORMAT": "j\\-\\a \\d\\e F Y\\, \\j\\e H:i", 
+    "DATETIME_FORMAT": "N j, Y, P", 
     "DATETIME_INPUT_FORMATS": [
       "%Y-%m-%d %H:%M:%S", 
+      "%Y-%m-%d %H:%M:%S.%f", 
       "%Y-%m-%d %H:%M", 
       "%Y-%m-%d", 
-      "%Y.%m.%d %H:%M:%S", 
-      "%Y.%m.%d %H:%M", 
-      "%Y.%m.%d", 
-      "%d/%m/%Y %H:%M:%S", 
-      "%d/%m/%Y %H:%M", 
-      "%d/%m/%Y", 
-      "%y-%m-%d %H:%M:%S", 
-      "%y-%m-%d %H:%M", 
-      "%y-%m-%d", 
-      "%Y-%m-%d %H:%M:%S.%f"
+      "%m/%d/%Y %H:%M:%S", 
+      "%m/%d/%Y %H:%M:%S.%f", 
+      "%m/%d/%Y %H:%M", 
+      "%m/%d/%Y", 
+      "%m/%d/%y %H:%M:%S", 
+      "%m/%d/%y %H:%M:%S.%f", 
+      "%m/%d/%y %H:%M", 
+      "%m/%d/%y"
     ], 
-    "DATE_FORMAT": "j\\-\\a \\d\\e F Y", 
+    "DATE_FORMAT": "N j, Y", 
     "DATE_INPUT_FORMATS": [
       "%Y-%m-%d", 
-      "%y-%m-%d", 
-      "%Y %m %d", 
-      "%d-a de %b %Y", 
-      "%d %b %Y", 
-      "%d-a de %B %Y", 
-      "%d %B %Y", 
-      "%d %m %Y"
+      "%m/%d/%Y", 
+      "%m/%d/%y"
     ], 
-    "DECIMAL_SEPARATOR": ",", 
-    "FIRST_DAY_OF_WEEK": "1", 
-    "MONTH_DAY_FORMAT": "j\\-\\a \\d\\e F", 
+    "DECIMAL_SEPARATOR": ".", 
+    "FIRST_DAY_OF_WEEK": "0", 
+    "MONTH_DAY_FORMAT": "F j", 
     "NUMBER_GROUPING": "3", 
-    "SHORT_DATETIME_FORMAT": "Y-m-d H:i", 
-    "SHORT_DATE_FORMAT": "Y-m-d", 
-    "THOUSAND_SEPARATOR": "\u00a0", 
-    "TIME_FORMAT": "H:i", 
+    "SHORT_DATETIME_FORMAT": "m/d/Y P", 
+    "SHORT_DATE_FORMAT": "m/d/Y", 
+    "THOUSAND_SEPARATOR": ",", 
+    "TIME_FORMAT": "P", 
     "TIME_INPUT_FORMATS": [
       "%H:%M:%S", 
-      "%H:%M", 
-      "%H:%M:%S.%f"
+      "%H:%M:%S.%f", 
+      "%H:%M"
     ], 
-    "YEAR_MONTH_FORMAT": "F \\d\\e Y"
+    "YEAR_MONTH_FORMAT": "F Y"
   };
 
   django.get_format = function (format_type) {
