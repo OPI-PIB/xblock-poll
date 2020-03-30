@@ -3,7 +3,7 @@
 <div class="poll-block themed-xblock" data-private="{% if private_results %}1{% endif %}"
      data-can-vote="{% if can_vote %}1{% endif %}">
     <div class="poll-block-form-wrapper">
-        <h3 class="poll-header">{{block_name}}</h3>
+        <h3 class="hd hd-3 poll-header">{{block_name}}</h3>
         <form>
             <table class="survey-table">
                 <thead>
@@ -50,7 +50,7 @@
                 </tr>
             {% endfor %}
             </table>
-            <input class="input-main" type="button" name="poll-submit" value="{% trans 'Submit' %}" disabled />
+            <input class="btn btn-primary btn-sm input-main" type="button" name="poll-submit" value="{% trans 'Submit' %}" disabled />
         </form>
         <div class="poll-voting-thanks{% if not choices or can_vote %} poll-hidden{% endif %}"><span>{% trans 'Thank you.' %}</span></div>
         <div class="poll-submissions-count poll-hidden">
@@ -61,7 +61,7 @@
         {% if feedback %}
             <div class="poll-feedback-container{% if not choices %} poll-hidden{% endif %}">
                 <hr />
-                <h3 class="poll-header">{% trans 'Feedback' %}</h3>
+                <h3 class="hd hd-3 poll-header">{% trans 'Feedback' %}</h3>
                 <div class="poll-feedback">
                     {{feedback|safe}}
                 </div>
@@ -70,7 +70,7 @@
 
         {% if can_view_private_results %}
             <div class="view-results-button-wrapper">
-                <button class="view-results-button">{% trans "View results" %}</button>
+                <button class="btn btn-outline-primary btn-sm view-results-button">{% trans "View results" %}</button>
             </div>
         {% endif %}
     </div>
@@ -78,8 +78,8 @@
 {% if can_view_private_results %}
   {% if not studio_edit %}
     <div class="export-results-button-wrapper">
-      <button class="export-results-button">{% trans "Export results to CSV" %}</button>
-      <button disabled class="download-results-button">{% trans "Download CSV" %}</button>
+      <button class="btn btn-outline-primary btn-sm export-results-button">{% trans "Export results to CSV" %}</button>
+      <button disabled class="btn btn-outline-primary btn-sm download-results-button">{% trans "Download CSV" %}</button>
       <p class="error-message poll-hidden"></p>
     </div>
   {% else %}

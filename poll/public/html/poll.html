@@ -4,7 +4,7 @@
      data-can-vote="{% if can_vote %}1{% endif %}">
   <div class="poll-block-form-wrapper">
 
-    <h3 class="poll-header">{{ display_name }}</h3>
+    <h3 class="hd hd-3 poll-header">{{ display_name }}</h3>
 
     <form>
       <fieldset class="poll-container">
@@ -32,7 +32,7 @@
           {% endfor %}
         </div>
       </fieldset>
-      <input class="input-main" type="button" name="poll-submit" value="{% trans 'Submit' %}" disabled/>
+      <input class="btn btn-primary btn-sm input-main" type="button" name="poll-submit" value="{% trans 'Submit' %}" disabled/>
     </form>
 
     <div class="poll-voting-thanks
@@ -49,7 +49,7 @@
     {% if feedback %}
       <div class="poll-feedback-container{% if not choice %} poll-hidden{% endif %}">
         <hr/>
-        <h3 class="poll-header">{% trans 'Feedback' %}</h3>
+        <h3 class="hd hd-3 poll-header">{% trans 'Feedback' %}</h3>
 
         <div class="poll-feedback">
           {{ feedback|safe }}

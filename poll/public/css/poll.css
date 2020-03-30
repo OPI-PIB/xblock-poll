@@ -116,10 +116,6 @@ li.poll-result .poll-image {
     margin-left: 0;
 }
 
-.poll-image-td {
-    width: 25%;
-}
-
 .poll-image img {
     vertical-align: middle;
 }
@@ -158,6 +154,7 @@ li.poll-result .poll-image {
     width: 100%;
     border-collapse: collapse;
     border: 0;
+    margin-bottom: 1em
 }
 
 .survey-table td{
@@ -220,7 +217,7 @@ li.poll-result .poll-image {
 
 th.survey-answer {
     text-align: center;
-    width: 7%;
+    width: auto;
     line-height: 1em;
     padding-bottom: .25em;
 }
