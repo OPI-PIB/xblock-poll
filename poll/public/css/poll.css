@@ -215,6 +215,10 @@ li.poll-result .poll-image {
     padding: 0;
 }
 
+.poll-image-td {
+    width: 50%;
+}
+
 th.survey-answer {
     text-align: center;
     width: auto;
