@@ -154,7 +154,7 @@ li.poll-result .poll-image {
     width: 100%;
     border-collapse: collapse;
     border: 0;
-    margin-bottom: 1em
+    margin-bottom: 1em;
 }
 
 .survey-table td{
@@ -229,6 +229,9 @@ th.survey-answer {
     text-align: center;
     line-height: 1em;
     padding: .25em;
+    font-size: 0.8em !important;
+    font-weight: normal !important;
+    word-wrap: break-word;
 }
 
 .poll-header {
@@ -256,6 +259,9 @@ th.survey-answer {
 .survey-question p, div.percentage-gauge-container label.poll-answer-label p{
     margin-bottom: 0;
     padding: 0;
+    font-size: 0.8rem !important;
+    word-wrap: break-word;
+    font-weight: normal;
 }
 
 /* Keep the paragraph spacing, but make the spacing vertically even. */
