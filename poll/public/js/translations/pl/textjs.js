@@ -9,68 +9,24 @@
   var django = globals.django || (globals.django = {});
 
   
-  django.pluralidx = function (count) { return (count == 1) ? 0 : 1; };
+  django.pluralidx = function (n) {
+    var v=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);
+    if (typeof(v) == 'boolean') {
+      return v ? 1 : 0;
+    } else {
+      return v;
+    }
+  };
   
 
   
-  /* gettext library */
+  /* gettext identity library */
 
-  django.catalog = {
-    "Answer": "Odpowied\u017a", 
-    "Delete": "Usu\u0144", 
-    "Feedback": "Komentarz zwrotny", 
-    "Image URL": "Adres URL obrazka", 
-    "Image alternative text": "Opis alternatywny obrazka", 
-    "Question": "Pytanie", 
-    "Results": "Wyniki", 
-    "Results gathered from {total} respondent.": [
-      "Wyniki uzyskane od {total} respondenta.", 
-      "Wyniki uzyskane od {total} respondent\u00f3w.", 
-      "Wyniki uzyskane od {total} respondent\u00f3w.", 
-      "Wyniki uzyskane od {total} respondent\u00f3w."
-    ], 
-    "Submit": "Wy\u015blij", 
-    "This must have an image URL or text, and can have both.  If you add an image, you must also provide an alternative text that describes the image in a way that would allow someone to answer the poll if the image did not load.": "Nale\u017cy wprowadzi\u0107 adres URL obrazka lub tekst, a najlepiej oba. Dodaj\u0105c obrazek, nale\u017cy pami\u0119ta\u0107 o umieszczeniu opisu alternatywnego, kt\u00f3ry pozwoli na udzielenie odpowiedzi r\u00f3wnie\u017c w przypadku je\u015bli obrazek si\u0119 nie wczyta.", 
-    "You can make limited use of Markdown in answer texts, preferably only bold and italics.": "W tre\u015bciach odpowiedzi dopuszczalny jest Markdown w ograniczonym wymiarze - pogrubienia i kursywy.", 
-    "move poll down": "przenie\u015b ankiet\u0119 ni\u017cej", 
-    "move poll up": "przenie\u015b ankiet\u0119 wy\u017cej"
-  };
-
-  django.gettext = function (msgid) {
-    var value = django.catalog[msgid];
-    if (typeof(value) == 'undefined') {
-      return msgid;
-    } else {
-      return (typeof(value) == 'string') ? value : value[0];
-    }
-  };
-
-  django.ngettext = function (singular, plural, count) {
-    var value = django.catalog[singular];
-    if (typeof(value) == 'undefined') {
-      return (count == 1) ? singular : plural;
-    } else {
-      return value[django.pluralidx(count)];
-    }
-  };
-
+  django.gettext = function (msgid) { return msgid; };
+  django.ngettext = function (singular, plural, count) { return (count == 1) ? singular : plural; };
   django.gettext_noop = function (msgid) { return msgid; };
-
-  django.pgettext = function (context, msgid) {
-    var value = django.gettext(context + '\x04' + msgid);
-    if (value.indexOf('\x04') != -1) {
-      value = msgid;
-    }
-    return value;
-  };
-
-  django.npgettext = function (context, singular, plural, count) {
-    var value = django.ngettext(context + '\x04' + singular, context + '\x04' + plural, count);
-    if (value.indexOf('\x04') != -1) {
-      value = django.ngettext(singular, plural, count);
-    }
-    return value;
-  };
+  django.pgettext = function (context, msgid) { return msgid; };
+  django.npgettext = function (context, singular, plural, count) { return (count == 1) ? singular : plural; };
   
 
   django.interpolate = function (fmt, obj, named) {
