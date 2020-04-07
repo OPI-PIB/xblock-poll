@@ -116,10 +116,6 @@ li.poll-result .poll-image {
     margin-left: 0;
 }
 
-.poll-image-td {
-    width: 25%;
-}
-
 .poll-image img {
     vertical-align: middle;
 }
@@ -158,10 +154,12 @@ li.poll-result .poll-image {
     width: 100%;
     border-collapse: collapse;
     border: 0;
+    margin-bottom: 1em
 }
 
 .survey-table td{
     text-align: center;
+    width: 15em;
 }
 
 .survey-table td label{
@@ -211,6 +209,11 @@ li.poll-result .poll-image {
 .survey-table .survey-option label {
     text-align: center;
     vertical-align: middle;
+    margin: 0;
+}
+
+.survey-table input {
+    vertical-align: middle !important; 
 }
 
 .survey-option input {
@@ -218,11 +221,14 @@ li.poll-result .poll-image {
     padding: 0;
 }
 
+.poll-image-td {
+    width: 50%;
+}
+
 th.survey-answer {
     text-align: center;
-    width: 7%;
     line-height: 1em;
-    padding-bottom: .25em;
+    padding: .25em;
 }
 
 .poll-header {
@@ -239,6 +245,7 @@ th.survey-answer {
     vertical-align: middle;
     padding-top: .15em;
     padding-bottom: .15em;
+    width: 15em;
 }
 
 .survey-choice {
@@ -297,7 +304,7 @@ th.survey-answer {
     visibility: hidden;
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 480px){
     .visible-mobile-only{
         display: inline-block;
         visibility: visible;
@@ -322,6 +329,14 @@ th.survey-answer {
     .survey-table thead{
         display: none;
         visibility: hidden;
+    }
+
+    .survey-table tbody td {
+        width: auto;
+    }
+
+    .survey-question {
+        width: auto;
     }
 
     .survey-table .survey-option .visible-mobile-only{
