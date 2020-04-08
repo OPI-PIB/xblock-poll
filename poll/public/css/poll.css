@@ -259,7 +259,7 @@ th.survey-answer {
 .survey-question p, div.percentage-gauge-container label.poll-answer-label p{
     margin-bottom: 0;
     padding: 0;
-    font-size: 0.8rem !important;
+    font-size: 0.8em !important;
     word-wrap: break-word;
     font-weight: normal;
 }
