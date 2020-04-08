@@ -13,60 +13,62 @@ msgstr ""
 #: poll/public/handlebars/poll_results.handlebars:5
 #: poll/public/handlebars/survey_results.handlebars:4
 msgid "Results"
-msgstr ""
+msgstr "Wyniki"
 
 #: poll/public/handlebars/poll_results.handlebars:31
 #: poll/public/handlebars/survey_results.handlebars:39
 msgid "Submit"
-msgstr ""
+msgstr "Wyślij"
 
 #: poll/public/handlebars/poll_results.handlebars:33
 #: poll/public/handlebars/survey_results.handlebars:41
 msgid "Results gathered from {total} respondent."
 msgid_plural "Results gathered from {total} respondents."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wyniki uzyskane od {total} respondenta."
+msgstr[1] "Wyniki uzyskane od {total} respondentów."
+msgstr[2] "Wyniki uzyskane od {total} respondentów."
+msgstr[3] "Wyniki uzyskane od {total} respondentów."
 
 #: poll/public/handlebars/poll_results.handlebars:37
 #: poll/public/handlebars/survey_results.handlebars:46
 msgid "Feedback"
-msgstr ""
+msgstr "Komentarz zwrotny"
 
 #: poll/public/handlebars/poll_studio.handlebars:6
 msgid "move poll up"
-msgstr ""
+msgstr "przenieś ankietę wyżej"
 
 #: poll/public/handlebars/poll_studio.handlebars:7
 msgid "move poll down"
-msgstr ""
+msgstr "przenieś ankietę niżej"
 
 #: poll/public/handlebars/poll_studio.handlebars:9
 msgid "Delete"
-msgstr ""
+msgstr "Usuń"
 
 #: poll/public/handlebars/poll_studio.handlebars:11
 msgid "Answer"
-msgstr ""
+msgstr "Odpowiedź"
 
 #: poll/public/handlebars/poll_studio.handlebars:12
 msgid "Question"
-msgstr ""
+msgstr "Pytanie"
 
 #: poll/public/handlebars/poll_studio.handlebars:16
 msgid "Image URL"
-msgstr ""
+msgstr "Adres URL obrazka"
 
 #: poll/public/handlebars/poll_studio.handlebars:18
 msgid "Image alternative text"
-msgstr ""
+msgstr "Opis alternatywny obrazka"
 
 #: poll/public/handlebars/poll_studio.handlebars:23
 msgid ""
 "You can make limited use of Markdown in answer texts, preferably only bold "
 "and italics."
 msgstr ""
+"W treściach odpowiedzi dopuszczalny jest Markdown w ograniczonym wymiarze - "
+"pogrubienia i kursywy."
 
 #: poll/public/handlebars/poll_studio.handlebars:27
 msgid ""
@@ -75,3 +77,7 @@ msgid ""
 " a way that would allow someone to answer the poll if the image did not "
 "load."
 msgstr ""
+"Należy wprowadzić adres URL obrazka lub tekst, a najlepiej i jedno, i "
+"drugie. Dodając obrazek, należy pamiętać o umieszczeniu opisu "
+"alternatywnego, który pozwoli na udzielenie odpowiedzi, gdy obrazek się nie "
+"wczyta."
