@@ -238,10 +238,18 @@ th.survey-answer {
     text-transform: uppercase;
 }
 
-.survey-percentage {
-    font-weight: bolder;
-    font-size: 1.2rem;
+@media (max-width: 480px) {
+    .survey-percentage {
+        font-weight: bolder;
+        font-size: 1rem;
+    }
 }
+
+@media (min-width: 480px) {
+    .survey-percentage {
+        font-weight: bolder;
+        font-size: 0.8em;
+}        
 
 .survey-question {
     font-weight: bold;
