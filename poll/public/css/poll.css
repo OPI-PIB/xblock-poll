@@ -249,6 +249,7 @@ th.survey-answer {
     .survey-percentage {
         font-weight: bolder;
         font-size: 0.8em;
+    }    
 }        
 
 .survey-question {
@@ -328,6 +329,11 @@ th.survey-answer {
         display: inline-block;
     }
 
+    .survey-percentage {
+        font-weight: bolder;
+        font-size: 1rem;
+    }
+
     .survey-percentage .percentage{
         width: 50px;
         text-align: right;
@@ -369,6 +375,7 @@ th.survey-answer {
         margin-bottom: 10px;
         border-radius: 5px;
     }
+
 
     .survey-table .survey-option:last-child{
         border-right: 1px solid #ccc;
