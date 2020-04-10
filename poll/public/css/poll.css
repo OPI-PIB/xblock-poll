@@ -238,14 +238,14 @@ th.survey-answer {
     text-transform: uppercase;
 }
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     .survey-percentage {
         font-weight: bolder;
         font-size: 1rem;
     }
 }
 
-@media (min-width: 480px) {
+@media only screen and (min-width: 480px) {
     .survey-percentage {
         font-weight: bolder;
         font-size: 0.8em;
