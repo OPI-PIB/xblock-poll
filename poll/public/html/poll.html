@@ -4,12 +4,12 @@
      data-can-vote="{% if can_vote %}1{% endif %}">
   <div class="poll-block-form-wrapper">
 
-    <h3 class="poll-header">{{ display_name }}</h3>
+    <h3 class="poll-header">{% trans display_name %}</h3>
 
     <form>
       <fieldset class="poll-container">
         <legend class="poll-question">
-          {{ question|safe }}
+          <p>{{ question|safe }}</p>
         </legend>
         <div class="poll-answers">
           {% for key, value in answers %}
@@ -27,7 +27,7 @@
                   </label>
                 </div>
               {% endif %}
-              <label class="poll-answer-text" for="poll-{{ block_id }}-answer-{{ key }}">{{ value.label|safe }}</label>
+              <label class="poll-answer-text" for="poll-{{ block_id }}-answer-{{ key }}"><p>{{ value.label|safe }}</p></label>
             </div>
           {% endfor %}
         </div>
@@ -52,7 +52,7 @@
         <h3 class="poll-header">{% trans 'Feedback' %}</h3>
 
         <div class="poll-feedback">
-          {{ feedback|safe }}
+          <p>{{ feedback|safe }}</p>
         </div>
       </div>
     {% endif %}

@@ -23,6 +23,7 @@
 #
 from __future__ import absolute_import
 
+import copy
 import functools
 import json
 import time
@@ -490,7 +491,8 @@ class PollBlock(PollBase, CSVExportMixin):
         Handlebars template can use.
         """
         tally = []
-        answers = OrderedDict(self.markdown_items(self.answers))
+        answers, question, feedback, display_name = self.translate_context()
+        answers = OrderedDict(self.markdown_items(answers))
         choice = self.get_choice()
         total = 0
         self.clean_tally()
@@ -559,17 +561,17 @@ class PollBlock(PollBase, CSVExportMixin):
         js_template = self.resource_string('public/handlebars/poll_results.handlebars')
 
         choice = self.get_choice()
-
+        answers, question, feedback, display_name = self.translate_context()
         context.update({
             'choice': choice,
-            'answers': self.markdown_items(self.answers),
-            'question': markdown(self.question),
+            'answers': self.markdown_items(answers),
+            'question': markdown(question),
             'private_results': self.private_results,
             # Mustache is treating an empty string as true.
-            'feedback': markdown(self.feedback) or False,
+            'feedback': markdown(feedback) or False,
             'js_template': js_template,
-            'any_img': self.any_image(self.answers),
-            'display_name': self.display_name,
+            'any_img': self.any_image(answers),
+            'display_name': display_name,
             'can_vote': self.can_vote(),
             'max_submissions': self.max_submissions,
             'submissions_count': self.submissions_count,
@@ -595,12 +597,13 @@ class PollBlock(PollBase, CSVExportMixin):
         Returns a JSON representation of the poll Xblock, that can be retrieved
         using Course Block API.
         """
+        answers, question, feedback, display_name = self.translate_context()
         return {
-            'question': self.question,
-            'answers': self.answers,
+            'question': question,
+            'answers': answers,
             'max_submissions': self.max_submissions,
             'private_results': self.private_results,
-            'feedback': self.feedback,
+            'feedback': feedback,
         }
 
     @XBlock.handler
@@ -623,13 +626,13 @@ class PollBlock(PollBase, CSVExportMixin):
     def studio_view(self, context=None):
         if not context:
             context = {}
-
+        answers, question, feedback, display_name = self.translate_context()
         js_template = self.resource_string('public/handlebars/poll_studio.handlebars')
         context.update({
-            'question': self.question,
-            'display_name': self.display_name,
+            'question': question,
+            'display_name': display_name,
             'private_results': self.private_results,
-            'feedback': self.feedback,
+            'feedback': feedback,
             'js_template': js_template,
             'max_submissions': self.max_submissions,
         })
@@ -655,19 +658,22 @@ class PollBlock(PollBase, CSVExportMixin):
 
     @PollBase.static_replace_json_handler
     def get_results(self, data, suffix=''):
+
+        _ = self.runtime.service(self, "i18n").ugettext
+        answers, question, feedback, display_name = self.translate_context()
         if self.private_results and not self.can_view_private_results():
             detail, total = {}, None
         else:
             self.publish_event_from_dict(self.event_namespace + '.view_results', {})
             detail, total = self.tally_detail()
         return {
-            'question': markdown(self.question),
+            'question': markdown(question),
             'tally': detail,
             'total': total,
-            'feedback': markdown(self.feedback),
+            'feedback': markdown(feedback),
             'plural': total > 1,
-            'display_name': self.display_name,
-            'any_img': self.any_image(self.answers),
+            'display_name': display_name,
+            'any_img': self.any_image(answers),
             # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
             'block_id': self._get_block_id(),
         }
@@ -875,6 +881,18 @@ class PollBlock(PollBase, CSVExportMixin):
 
         return xblock_body
 
+    def translate_context(self):
+        _ = self.runtime.service(self, "i18n").ugettext
+        answers = copy.deepcopy(self.answers)
+        for i, answer in enumerate(answers):
+            answers[i][1]['label'] = _(answer[1]['label'])
+        question = copy.deepcopy(self.question)
+        question = _(question) if question else question
+        feedback = copy.deepcopy(self.feedback)
+        feedback = _(feedback) if feedback else feedback
+        display_name = copy.deepcopy(self.display_name)
+        display_name = _(display_name) if display_name else display_name
+        return answers, question, feedback, display_name
 
 @XBlock.wants('settings')
 @XBlock.needs('i18n')
@@ -928,24 +946,25 @@ class SurveyBlock(PollBase, CSVExportMixin):
         The primary view of the SurveyBlock, shown to students
         when viewing courses.
         """
+
         if not context:
             context = {}
 
         js_template = self.resource_string('public/handlebars/survey_results.handlebars')
 
+        answers, questions, block_name = self.translate_context()
         choices = self.get_choices()
-
         context.update({
             'choices': choices,
             # Offset so choices will always be True.
-            'answers': self.answers,
+            'answers': answers,
             'js_template': js_template,
-            'questions': self.renderable_answers(self.questions, choices),
+            'questions': self.renderable_answers(questions, choices),
             'private_results': self.private_results,
-            'any_img': self.any_image(self.questions),
+            'any_img': self.any_image(questions),
             # Mustache is treating an empty string as true.
             'feedback': markdown(self.feedback) or False,
-            'block_name': self.block_name,
+            'block_name': block_name,
             'can_vote': self.can_vote(),
             'submissions_count': self.submissions_count,
             'max_submissions': self.max_submissions,
@@ -967,12 +986,13 @@ class SurveyBlock(PollBase, CSVExportMixin):
         Returns a JSON representation of survey XBlock, that can be retrieved
         using Course Block API.
         """
+        answers, questions, block_name = self.translate_context()
         return {
-            'questions': self.questions,
-            'answers': self.answers,
+            'questions': questions,
+            'answers': answers,
             'max_submissions': self.max_submissions,
             'private_results': self.private_results,
-            'block_name': self.block_name,
+            'block_name': block_name,
             'feedback': self.feedback,
         }
 
@@ -1009,9 +1029,10 @@ class SurveyBlock(PollBase, CSVExportMixin):
             context = {}
 
         js_template = self.resource_string('public/handlebars/poll_studio.handlebars')
+        answers, questions, block_name = self.translate_context()
         context.update({
             'feedback': self.feedback,
-            'display_name': self.block_name,
+            'display_name': block_name,
             'private_results': self.private_results,
             'js_template': js_template,
             'max_submissions': self.max_submissions,
@@ -1031,8 +1052,9 @@ class SurveyBlock(PollBase, CSVExportMixin):
         Handlebars template can use.
         """
         tally = []
-        questions = OrderedDict(self.markdown_items(self.questions))
-        default_answers = OrderedDict([(answer, 0) for answer, __ in self.answers])
+        answers, questions, block_name = self.translate_context()
+        questions = OrderedDict(self.markdown_items(questions))
+        default_answers = OrderedDict([(answer, 0) for answer, __ in answers])
         choices = self.choices or {}
         total = 0
         self.clean_tally()
@@ -1132,6 +1154,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
         """
         Gets the user's choices, if they're still valid.
         """
+        answers, questions, block_name = self.translate_context()
         questions = dict(self.questions)
         answers = dict(self.answers)
         if self.choices is None:
@@ -1147,6 +1170,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
 
     @PollBase.static_replace_json_handler
     def get_results(self, data, suffix=''):
+        answers, questions, block_name = self.translate_context()
         if self.private_results and not self.can_view_private_results():
             detail, total = {}, None
         else:
@@ -1154,38 +1178,40 @@ class SurveyBlock(PollBase, CSVExportMixin):
             detail, total = self.tally_detail()
         return {
             'answers': [
-                {'key': key, 'label': label} for key, label in self.answers
+                {'key': key, 'label': label} for key, label in answers
             ],
             'tally': detail,
             'total': total,
             'feedback': markdown(self.feedback),
             'plural': total > 1,
-            'block_name': self.block_name,
+            'block_name': block_name,
             # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
             'block_id': self._get_block_id()
         }
 
     @XBlock.json_handler
     def load_answers(self, data, suffix=''):
+        answers, questions, block_name = self.translate_context()
         return {
             'items': [
                 {
                     'key': key, 'text': value,
                     'noun': 'answer', 'image': False,
                 }
-                for key, value in self.answers
+                for key, value in answers
             ],
         }
 
     @XBlock.json_handler
     def load_questions(self, data, suffix=''):
+        answers, questions, block_name = self.translate_context()
         return {
             'items': [
                 {
                     'key': key, 'text': value['label'], 'img': value['img'], 'img_alt': value.get('img_alt'),
                     'noun': 'question', 'image': True,
                 }
-                for key, value in self.questions
+                for key, value in questions
             ]
         }
 
@@ -1433,3 +1459,16 @@ class SurveyBlock(PollBase, CSVExportMixin):
         xblock_body["content_type"] = "Survey"
 
         return xblock_body
+
+    def translate_context(self):
+        _ = self.runtime.service(self, "i18n").ugettext
+        answers = copy.deepcopy(self.answers)
+        questions = copy.deepcopy(self.questions)
+        block_name = copy.deepcopy(self.block_name)
+        for i, answer in enumerate(answers):
+            answers[i] = (answer[0], _(answer[1]))
+        for i, question in enumerate(questions):
+            questions[i][1]['label'] = _(question[1]['label'])
+        # self.feedback = _(self.feedback) if self.feedback else self.feedback
+        block_name = _(block_name) if block_name else block_name
+        return answers, questions, block_name

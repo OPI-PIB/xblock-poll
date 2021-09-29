@@ -1,5 +1,15 @@
+# 
+# Translators:
+# Maciej Kolankowski <maciej.kolankowski@opi.org.pl>, 2021
+# krystianlygas <krystian.lygas@gmail.com>, 2021
+# 
 msgid ""
-msgstr "Content-Type: text/plain; charset=utf-8\n"
+msgstr ""
+"Last-Translator: krystianlygas <krystian.lygas@gmail.com>, 2021\n"
+"Language-Team: Polish (https://www.transifex.com/navoica/teams/104253/pl/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: poll/public/handlebars/poll_results.handlebars:5
 #: poll/public/handlebars/survey_results.handlebars:4
@@ -9,7 +19,7 @@ msgstr "Wyniki"
 #: poll/public/handlebars/poll_results.handlebars:31
 #: poll/public/handlebars/survey_results.handlebars:39
 msgid "Submit"
-msgstr "Prześlij"
+msgstr "Wyślij"
 
 #: poll/public/handlebars/poll_results.handlebars:33
 #: poll/public/handlebars/survey_results.handlebars:41
@@ -17,11 +27,13 @@ msgid "Results gathered from {total} respondent."
 msgid_plural "Results gathered from {total} respondents."
 msgstr[0] "Wyniki zebrane od {total} respondenta."
 msgstr[1] "Wyniki zebrane od {total} respondentów."
+msgstr[2] "Wyniki zebrane od {total} respondentów."
+msgstr[3] "Wyniki zebrane od {total} respondentów."
 
 #: poll/public/handlebars/poll_results.handlebars:37
 #: poll/public/handlebars/survey_results.handlebars:46
 msgid "Feedback"
-msgstr "Informacja zwrotna"
+msgstr "Opinia"
 
 #: poll/public/handlebars/poll_studio.handlebars:6
 msgid "move poll up"
@@ -55,12 +67,18 @@ msgstr "Tekst alternatywny obrazu"
 msgid ""
 "You can make limited use of Markdown in answer texts, preferably only bold "
 "and italics."
-msgstr "Nie możesz w pełni używasz znaczników Markdown w tekście odpowiedzi, używaj głównie znaczników pogrubienia i kursywy."
+msgstr ""
+"Nie możesz w pełni używasz znaczników Markdown w tekście odpowiedzi, używaj "
+"głównie znaczników pogrubienia i kursywy."
 
 #: poll/public/handlebars/poll_studio.handlebars:27
 msgid ""
 "This must have an image URL or text, and can have both.  If you add an "
-"image, you must also provide an alternative text that describes the image "
-"in a way that would allow someone to answer the poll if the image did not "
+"image, you must also provide an alternative text that describes the image in"
+" a way that would allow someone to answer the poll if the image did not "
 "load."
-msgstr "Wymagany jest URL obrazu, tekst lub oba parametry. Jeśli dodajesz obraz, musisz też określić tekst alternatywny, które opisuje obraz w taki sposób, żeby respondent mógł odpowiedzieć na pytanie, nawet jeśli obraz się nie wczyta."
+msgstr ""
+"Wymagany jest URL obrazu, tekst lub oba parametry. Jeśli dodajesz obraz, "
+"musisz też określić tekst alternatywny, które opisuje obraz w taki sposób, "
+"żeby respondent mógł odpowiedzieć na pytanie, nawet jeśli obraz się nie "
+"wczyta."

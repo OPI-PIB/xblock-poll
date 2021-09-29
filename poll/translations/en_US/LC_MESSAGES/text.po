@@ -1,224 +1,225 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Translators:
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: XBlocks\n"
-"POT-Creation-Date: 2016-04-07 16:17+0500\n"
-"PO-Revision-Date: 2016-06-08 14:35+0000\n"
-"Last-Translator: \n"
-"Language-Team: Korean (Korea) (http://www.transifex.com/open-edx/xblocks/language/ko_KR/)\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-28 08:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ko_KR\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.7\n"
-"X-Poedit-Basepath: ../../..\n"
-"X-Poedit-SearchPath-0: poll.py\n"
-
-#: poll/poll.py:229
-msgid "Whether or not to display results to the user."
-msgstr "사용자에게 결과를 표시할지 여부입니다."
-
-#: poll/poll.py:230
-msgid "The maximum number of times a user may send a submission."
-msgstr "사용자가 답변을 제출할 수 있는 최대 횟수입니다."
 
 #: poll/poll.py:232
-msgid "Number of times the user has sent a submission."
-msgstr "사용자가 답변을 제출한 횟수입니다."
+msgid "Whether or not to display results to the user."
+msgstr ""
 
-#: poll/poll.py:234
+#: poll/poll.py:233
+msgid "The maximum number of times a user may send a submission."
+msgstr ""
+
+#: poll/poll.py:235
+msgid "Number of times the user has sent a submission."
+msgstr ""
+
+#: poll/poll.py:237
 msgid "Text to display after the user votes."
-msgstr "사용자가 투표한 후 표시되는 텍스트입니다."
+msgstr ""
 
 #. Translators: {field} is either "answers" or "questions".
-#: poll/poll.py:295
+#: poll/poll.py:298
 #, python-brace-format
 msgid "'{field}' is not present, or not a JSON array."
-msgstr "'{field}'이(가) 없거나 JSON 어레이가 아닙니다."
+msgstr ""
 
 #. Translators: {noun} is either "Answer" or "Question". {item} identifies the answer or question.
-#: poll/poll.py:307
+#: poll/poll.py:310
 #, python-brace-format
 msgid "{noun} {item} not a javascript object!"
-msgstr "{noun} {item}이(가) Javascript 오브젝트가 아닙니다!"
+msgstr ""
 
 #. Translators: {noun} is either "Answer" or "Question". {item} identifies the answer or question.
-#: poll/poll.py:316
+#: poll/poll.py:319
 #, python-brace-format
 msgid "{noun} {item} contains no key."
-msgstr "{noun} {item}에 키가 포함되어 있지 않습니다."
+msgstr ""
 
 #. Translators: {noun} is either "Answer" or "Question".
 #. {noun_lower} is the lowercase version of {noun}.
-#: poll/poll.py:328
+#: poll/poll.py:331
 #, python-brace-format
 msgid ""
 "{noun} has no text or img. Please make sure all {noun_lower}s have one or "
 "the other, or both."
-msgstr "{noun}에 텍스트 또는 이미지가 없습니다. 모든 {noun_lower}에 텍스트 또는 이미지 중 하나 또는 둘 다 있는지 확인하시기 바랍니다."
+msgstr ""
 
 #. Translators: {noun} is either "Answer" or "Question".
 #. {noun_lower} is the lowercase version of {noun}.
-#: poll/poll.py:339
+#: poll/poll.py:342
 #, python-brace-format
 msgid ""
 "{noun} was added with no label. All {noun_lower}s must have labels. Please "
 "check the form. Check the form and explicitly delete {noun_lower}s if not "
 "needed."
-msgstr "{noun}이(가) 라벨 없이 추가되었습니다. 모든 {noun_lower}에는 라벨이 있어야 합니다. 양식을 확인한 다음 필요 없는 {noun_lower}을(를) 확실하게 삭제하십시오."
+msgstr ""
 
-#: poll/poll.py:347
+#: poll/poll.py:350
 msgid ""
 "All images must have an alternative text describing the image in a way that "
 "would allow someone to answer the poll if the image did not load."
-msgstr "모든 이미지에는 이미지가 로드되지 않는 경우에도 누구나 투표에 참여할 수 있도록 이미지를 설명하는 대체 텍스트가 있어야 합니다."
+msgstr ""
 
 #. Translators: "{noun_lower} is either "answer" or "question".
-#: poll/poll.py:359
+#: poll/poll.py:362
 #, python-brace-format
 msgid "You must include at least one {noun_lower}."
-msgstr "적어도 하나의 {noun_lower}을(를) 포함해야 합니다."
+msgstr ""
 
-#: poll/poll.py:407
+#: poll/poll.py:410
 msgid "Maximum Submissions missing or not an integer."
-msgstr "최대 제출 답변 수가 누락되었거나 정수가 아닙니다."
+msgstr ""
 
-#: poll/poll.py:412
+#: poll/poll.py:415
 msgid "Private results may not be False when Maximum Submissions is not 1."
-msgstr "최대 제출 답변 수가 1이 아닌 경우 비공개 결과가 False가 아닐 수 있습니다."
+msgstr ""
 
-#: poll/poll.py:449 poll/poll.py:842
+#: poll/poll.py:452 poll/poll.py:887
 msgid "Poll"
-msgstr "투표"
+msgstr ""
 
-#: poll/poll.py:450
+#: poll/poll.py:453
 msgid "What is your favorite color?"
-msgstr "좋아하는 색깔이 무엇입니까?"
-
-#: poll/poll.py:455
-msgid "Red"
-msgstr "빨간색"
-
-#: poll/poll.py:456
-msgid "Blue"
-msgstr "파란색"
-
-#: poll/poll.py:457
-msgid "Green"
-msgstr "초록색"
+msgstr ""
 
 #: poll/poll.py:458
-msgid "Other"
-msgstr "기타"
+msgid "Red"
+msgstr ""
+
+#: poll/poll.py:459
+msgid "Blue"
+msgstr ""
 
 #: poll/poll.py:460
+msgid "Green"
+msgstr ""
+
+#: poll/poll.py:461
+msgid "Other"
+msgstr ""
+
+#: poll/poll.py:463
 msgid "The answer options on this poll."
-msgstr "이 투표의 답변 선택지입니다."
+msgstr ""
 
-#: poll/poll.py:464 poll/poll.py:868
+#: poll/poll.py:467 poll/poll.py:913
 msgid "Total tally of answers from students."
-msgstr "수강자가 제출한 답변의 총 합계입니다."
+msgstr ""
 
-#: poll/poll.py:465
+#: poll/poll.py:468
 msgid "The student's answer"
-msgstr "수강자의 답변"
+msgstr ""
 
-#: poll/poll.py:673 poll/poll.py:1148
+#: poll/poll.py:683 poll/poll.py:1200
 msgid "You have already voted in this poll."
-msgstr "이 투표에 이미 참여하셨습니다."
+msgstr ""
 
-#: poll/poll.py:678
+#: poll/poll.py:688
 msgid "Answer not included with request."
-msgstr "요청에 답변이 포함되지 않았습니다."
+msgstr ""
 
 #. Translators: {choice} uniquely identifies a specific answer belonging to a poll or survey.
-#: poll/poll.py:687
+#: poll/poll.py:697
 #, python-brace-format
 msgid "No key \"{choice}\" in answers table."
-msgstr "답변 테이블에 키 \"{choice}\"이(가) 없습니다."
+msgstr ""
 
-#: poll/poll.py:696 poll/poll.py:1156
+#: poll/poll.py:706 poll/poll.py:1208
 msgid "You have already voted as many times as you are allowed."
-msgstr "이미 허용된 최대 횟수만큼 투표하셨습니다."
+msgstr ""
 
-#: poll/poll.py:726
+#: poll/poll.py:736
 msgid "You must specify a question."
-msgstr "질문을 명시해야 합니다."
+msgstr ""
 
-#: poll/poll.py:729 poll/poll.py:826 poll/poll.py:1210 poll/poll.py:1338
+#: poll/poll.py:739 poll/poll.py:836 poll/poll.py:1262 poll/poll.py:1390
 msgid "Answer"
-msgstr "답변"
+msgstr ""
 
-#: poll/poll.py:825 poll/poll.py:1211 poll/poll.py:1337
+#: poll/poll.py:835 poll/poll.py:1263 poll/poll.py:1389
 msgid "Question"
-msgstr "질문"
+msgstr ""
 
-#: poll/poll.py:828 poll/poll.py:1339
+#: poll/poll.py:838 poll/poll.py:1391
 msgid "Submissions count"
-msgstr "제출 답변 수"
+msgstr ""
 
-#: poll/poll.py:839
+#: poll/poll.py:884
 msgid "Survey"
-msgstr "설문조사"
+msgstr ""
 
-#: poll/poll.py:845
+#: poll/poll.py:890
 msgid "Yes"
-msgstr "예"
+msgstr ""
 
-#: poll/poll.py:846
+#: poll/poll.py:891
 msgid "No"
-msgstr "아니요"
+msgstr ""
 
-#: poll/poll.py:847
+#: poll/poll.py:892
 msgid "Maybe"
-msgstr "모르겠음"
+msgstr ""
 
-#: poll/poll.py:849
+#: poll/poll.py:894
 msgid "Answer choices for this Survey"
-msgstr "이 설문조사의 답변 선택지"
+msgstr ""
 
-#: poll/poll.py:853
+#: poll/poll.py:898
 msgid "Are you enjoying the course?"
-msgstr "강의에 만족하고 계십니까?"
+msgstr ""
 
-#: poll/poll.py:855
+#: poll/poll.py:900
 msgid "Would you recommend this course to your friends?"
-msgstr "이 강의를 친구에게 추천하시겠습니까?"
+msgstr ""
 
-#: poll/poll.py:859
+#: poll/poll.py:904
 msgid "Do you think you will learn a lot?"
-msgstr "많은 것을 배울 수 있을 것이라고 생각하십니까?"
+msgstr ""
 
-#: poll/poll.py:861
+#: poll/poll.py:906
 msgid "Questions for this Survey"
-msgstr "이 설문조사의 질문"
+msgstr ""
 
-#: poll/poll.py:870
+#: poll/poll.py:915
 msgid "The user's answers"
-msgstr "사용자의 답변"
+msgstr ""
 
-#: poll/poll.py:1164
+#: poll/poll.py:1216
 msgid ""
 "Not all questions were included, or unknown questions were included. Try "
 "refreshing and trying again."
-msgstr "일부 질문이 포함되지 않았거나 알려지지 않은 질문이 포함되었습니다. 새로고침한 후에 다시 시도해 보십시오."
+msgstr ""
 
 #. Translators: {answer_key} uniquely identifies a specific answer belonging to a poll or survey.
 #. {question_key} uniquely identifies a specific question belonging to a poll or survey.
-#: poll/poll.py:1177
+#: poll/poll.py:1229
 #, python-brace-format
 msgid "Found unknown answer '{answer_key}' for question key '{question_key}'"
-msgstr "질문 키 '{question_key}'에 대해 알려지지 않은 답변 '{answer_key}'이(가) 발견되었습니다."
+msgstr ""
 
 #: poll/public/html/poll.html:35 poll/public/html/survey.html:53
 msgid "Submit"
-msgstr "제출하기"
+msgstr ""
 
 #: poll/public/html/poll.html:40 poll/public/html/survey.html:55
 msgid "Thank you."
-msgstr "감사합니다."
+msgstr ""
 
 #: poll/public/html/poll.html:44
 #, python-format
@@ -227,38 +228,36 @@ msgid ""
 "        You have used %(submissions_count_s)s out of %(max_submissions_s)s "
 "submissions.\n"
 "      "
-msgstr "\n"
-"        최대 제출 횟수 %(max_submissions_s)s번 중 %(submissions_count_s)s번을 사용하셨습니다.\n"
-"      "
+msgstr ""
 
 #: poll/public/html/poll.html:52 poll/public/html/poll_edit.html:27
 #: poll/public/html/survey.html:64
 msgid "Feedback"
-msgstr "피드백"
+msgstr ""
 
 #: poll/public/html/poll.html:64 poll/public/html/survey.html:73
 msgid "View results"
-msgstr "결과 보기"
+msgstr ""
 
 #: poll/public/html/poll.html:71 poll/public/html/survey.html:81
 msgid "Export results to CSV"
-msgstr "CSV로 결과 내보내기"
+msgstr ""
 
 #: poll/public/html/poll.html:72 poll/public/html/survey.html:82
 msgid "Download CSV"
-msgstr "CSV 다운로드"
+msgstr ""
 
 #: poll/public/html/poll.html:76 poll/public/html/survey.html:86
 msgid "Student data and results CSV available for download in the LMS."
-msgstr "LMS에서 다운로드할 수 있는 수강자 데이터 및 결과에 대한 CVS입니다."
+msgstr ""
 
 #: poll/public/html/poll_edit.html:8
 msgid "Display Name"
-msgstr "표시 이름"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:15
 msgid "Question/Prompt"
-msgstr "질문/안내글"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:16
 #, python-format
@@ -266,13 +265,11 @@ msgid ""
 "\n"
 "                    %(link_start)sMarkdown Syntax%(link_end)s is supported.\n"
 "                "
-msgstr "\n"
-"                    %(link_start)sMarkdown Syntax%(link_end)s가 지원됩니다.\n"
-"                "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:23
 msgid "Enter the prompt for the user."
-msgstr "사용자를 위한 안내글을 입력하십시오."
+msgstr ""
 
 #: poll/public/html/poll_edit.html:28
 #, python-format
@@ -280,9 +277,7 @@ msgid ""
 "\n"
 "                %(link_start)sMarkdown Syntax%(link_end)s is supported.\n"
 "            "
-msgstr "\n"
-"                %(link_start)sMarkdown Syntax%(link_end)s가 지원됩니다.\n"
-"            "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:36
 msgid ""
@@ -291,30 +286,27 @@ msgid ""
 "feedback after they have\n"
 "                    submitted their response to the poll.\n"
 "                "
-msgstr "\n"
-"                    이 텍스트는 사용자가 투표에 답변을 제출한 후에 사용자에게\n"
-"                    추가 피드백으로 표시됩니다.\n"
-"                "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:44
 msgid "Private Results"
-msgstr "비공개 결과"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:48
 msgid "True"
-msgstr "True"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:49
 msgid "False"
-msgstr "False"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:53
 msgid "If this is set to True, don't display results of the poll to the user."
-msgstr "True로 설정하는 경우 투표 결과가 사용자에게 표시되지 않습니다."
+msgstr ""
 
 #: poll/public/html/poll_edit.html:58
 msgid "Maximum Submissions"
-msgstr "최대 제출 답변 수"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:63
 #, python-format
@@ -325,14 +317,11 @@ msgid ""
 "                    'Private Results' should be true.%(bold_end)s Setting it "
 "to 0 will allow infinite resubmissions.\n"
 "                "
-msgstr "\n"
-"                    투표에 답변을 제출할 수 있는 최대 횟수입니다. %(bold_start)s이 값을 1 이외의 값으로 설정하면\n"
-"                    '비공개 결과'가 true가 되어야 함을 의미합니다.%(bold_end)s 이 값을 0으로 설정하면 답변을 제한 없이 다시 제출할 수 있습니다.\n"
-"                "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:71
 msgid "Notes:"
-msgstr "참고:"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:72
 msgid ""
@@ -345,12 +334,7 @@ msgid ""
 "also be deleted. Students whose choices are deleted\n"
 "                    may vote again, but will not lose course progress.\n"
 "                "
-msgstr "\n"
-"                    답변 텍스트를 변경하는 경우, 해당 답변 선택지에 투표한 모든 수강자의 투표가 새로운 텍스트로\n"
-"                    업데이트됩니다. 따라서 답변을 ‘True’에서 ‘False’로 변경하는 것과 같은 변경은 하지 않는 것이 좋습니다.\n"
-"                    답변을 삭제하는 경우, 해당 답변을 선택한 투표도 삭제됩니다. 자신의 답변 선택지가 삭제된 수강자는\n"
-"                    다시 투표할 수 있으며 강의 진도에는 영향을 받지 않습니다.\n"
-"                "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:81
 msgid ""
@@ -361,27 +345,23 @@ msgid ""
 "took the survey will be permitted to retake it, but will not\n"
 "                        lose course progress.\n"
 "                    "
-msgstr "\n"
-"                        질문에 대해서도 마찬가지로 주의를 기울여야 합니다. 질문 텍스트가 변경되는 경우 해당 질문에 답변한 모든 투표가 그대로 유지됩니다.\n"
-"                        질문이 삭제되는 경우, 이전에 설문조사에 참여했던 모든 수강자가 설문조사에 다시 참여할 수 있으며 강의 진도에는\n"
-"                       영향을 받지 않습니다.\n"
-"                    "
+msgstr ""
 
 #: poll/public/html/poll_edit.html:97
 msgid "Add Answer"
-msgstr "답변 추가"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:101
 msgid "Add Question"
-msgstr "질문 추가"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:105
 msgid "Save"
-msgstr "저장"
+msgstr ""
 
 #: poll/public/html/poll_edit.html:108
 msgid "Cancel"
-msgstr "취소"
+msgstr ""
 
 #: poll/public/html/survey.html:57
 #, python-format
@@ -390,6 +370,4 @@ msgid ""
 "                You have used %(submissions_count_s)s out of "
 "%(max_submissions_s)s submissions.\n"
 "            "
-msgstr "\n"
-"                최대 답변 제출 횟수 %(max_submissions_s)s번 중 %(submissions_count_s)s번을 사용하셨습니다.\n"
-"            "
+msgstr ""
