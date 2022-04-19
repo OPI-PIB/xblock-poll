@@ -15,6 +15,11 @@
     padding-left: .5em;
 }
 
+#results #seq_content .xblock  .vert .poll-answer-text > p {
+    margin:auto;
+    font-size: 0.9rem;
+}
+
 .percentage-gauge {
     display: inline-block;
     background-color: #e5ebee;
@@ -61,7 +66,6 @@
 
 .poll-answers {
     margin-bottom: 1em;
-    padding-left: 1em;
 }
 
 .poll-results-wrapper:focus {
