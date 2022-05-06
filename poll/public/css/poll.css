@@ -20,6 +20,7 @@
 
 #results #seq_content .xblock  .vert .poll-answer-text > p {
     margin:auto;
+    font-size: 0.9rem;
 }
 
 .percentage-gauge {
@@ -68,7 +69,6 @@
 
 .poll-answers {
     margin-bottom: 1em;
-    padding-left: 1em;
 }
 
 .poll-results-wrapper:focus {
