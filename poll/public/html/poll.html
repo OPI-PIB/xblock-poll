@@ -32,7 +32,11 @@
           {% endfor %}
         </div>
       </fieldset>
-      <input class="input-main" type="button" name="poll-submit" value="{% trans 'Submit' %}" disabled/>
+
+      <button class="input-main" type="button" name="poll-submit" disabled>
+        <span class="fa fa-check" aria-hidden="true"></span>
+        {% trans 'Submit' %}
+      </button>
     </form>
 
     <div class="poll-voting-thanks
