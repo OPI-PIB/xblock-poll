@@ -9,12 +9,29 @@
   var django = globals.django || (globals.django = {});
 
   
-  django.pluralidx = function(count) { return (count == 1) ? 0 : 1; };
+  django.pluralidx = function(n) {
+    var v=(n != 1);
+    if (typeof(v) == 'boolean') {
+      return v ? 1 : 0;
+    } else {
+      return v;
+    }
+  };
   
 
   /* gettext library */
 
   django.catalog = django.catalog || {};
+  
+  var newcatalog = {
+    "Answer": "Answer",
+    "Delete": "Delete",
+    "Question": "Question",
+    "Submit": "Submit"
+  };
+  for (var key in newcatalog) {
+    django.catalog[key] = newcatalog[key];
+  }
   
 
   if (!django.jsi18n_initialized) {
@@ -32,7 +49,7 @@
       if (typeof(value) == 'undefined') {
         return (count == 1) ? singular : plural;
       } else {
-        return value[django.pluralidx(count)];
+        return value.constructor === Array ? value[django.pluralidx(count)] : value;
       }
     };
 
@@ -88,9 +105,9 @@
       "%m/%d/%y"
     ],
     "DECIMAL_SEPARATOR": ".",
-    "FIRST_DAY_OF_WEEK": "0",
+    "FIRST_DAY_OF_WEEK": 0,
     "MONTH_DAY_FORMAT": "F j",
-    "NUMBER_GROUPING": "3",
+    "NUMBER_GROUPING": 3,
     "SHORT_DATETIME_FORMAT": "m/d/Y P",
     "SHORT_DATE_FORMAT": "m/d/Y",
     "THOUSAND_SEPARATOR": ",",

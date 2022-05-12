@@ -16,6 +16,16 @@
 
   django.catalog = django.catalog || {};
   
+  var newcatalog = {
+    "Answer": "Answer",
+    "Delete": "Delete",
+    "Question": "Question",
+    "Submit": "Submit"
+  };
+  for (var key in newcatalog) {
+    django.catalog[key] = newcatalog[key];
+  }
+  
 
   if (!django.jsi18n_initialized) {
     django.gettext = function(msgid) {
@@ -32,7 +42,7 @@
       if (typeof(value) == 'undefined') {
         return (count == 1) ? singular : plural;
       } else {
-        return value[django.pluralidx(count)];
+        return value.constructor === Array ? value[django.pluralidx(count)] : value;
       }
     };
 
@@ -94,9 +104,9 @@
       "%d %m %Y"
     ],
     "DECIMAL_SEPARATOR": ",",
-    "FIRST_DAY_OF_WEEK": "1",
+    "FIRST_DAY_OF_WEEK": 1,
     "MONTH_DAY_FORMAT": "j\\-\\a \\d\\e F",
-    "NUMBER_GROUPING": "3",
+    "NUMBER_GROUPING": 3,
     "SHORT_DATETIME_FORMAT": "Y-m-d H:i",
     "SHORT_DATE_FORMAT": "Y-m-d",
     "THOUSAND_SEPARATOR": "\u00a0",

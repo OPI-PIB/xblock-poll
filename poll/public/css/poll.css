@@ -5,14 +5,26 @@
      * Some browsers use custom user agent stylesheets that modify the value of the "display" property
      * for <legend> elements. */
     display: inline;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .poll-answer-text {
     margin-bottom: 0;
-    font-weight: bold;
     vertical-align: middle;
     display: table-cell;
     padding-left: .5em;
+
+    
+}
+
+#results #seq_content .xblock  .vert .poll-answer-text > p {
+    margin:auto;
+}
+
+#results #seq_content .xblock  .vert .poll-answer-text > p {
+    margin:auto;
+    font-size: 0.9rem;
 }
 
 .percentage-gauge {
@@ -61,7 +73,6 @@
 
 .poll-answers {
     margin-bottom: 1em;
-    padding-left: 1em;
 }
 
 .poll-results-wrapper:focus {
