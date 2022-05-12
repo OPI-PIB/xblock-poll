@@ -37,7 +37,7 @@
       "Wyniki zebrane od {total} respondent\u00f3w.",
       "Wyniki zebrane od {total} respondent\u00f3w."
     ],
-    "Submit": "Wy\u015blij",
+    "Submit": "Prze\u015blij",
     "This must have an image URL or text, and can have both.  If you add an image, you must also provide an alternative text that describes the image in a way that would allow someone to answer the poll if the image did not load.": "Wymagany jest URL obrazu, tekst lub oba parametry. Je\u015bli dodajesz obraz, musisz te\u017c okre\u015bli\u0107 tekst alternatywny, kt\u00f3re opisuje obraz w taki spos\u00f3b, \u017ceby respondent m\u00f3g\u0142 odpowiedzie\u0107 na pytanie, nawet je\u015bli obraz si\u0119 nie wczyta.",
     "You can make limited use of Markdown in answer texts, preferably only bold and italics.": "Nie mo\u017cesz w pe\u0142ni u\u017cywasz znacznik\u00f3w Markdown w tek\u015bcie odpowiedzi, u\u017cywaj g\u0142\u00f3wnie znacznik\u00f3w pogrubienia i kursywy.",
     "move poll down": "przesu\u0144 sonda\u017c w d\u00f3\u0142",
@@ -63,7 +63,7 @@
       if (typeof(value) == 'undefined') {
         return (count == 1) ? singular : plural;
       } else {
-        return value[django.pluralidx(count)];
+        return value.constructor === Array ? value[django.pluralidx(count)] : value;
       }
     };
 
@@ -116,9 +116,9 @@
       "%Y-%m-%d"
     ],
     "DECIMAL_SEPARATOR": ",",
-    "FIRST_DAY_OF_WEEK": "1",
-    "MONTH_DAY_FORMAT": "j F",
-    "NUMBER_GROUPING": "3",
+    "FIRST_DAY_OF_WEEK": 1,
+    "MONTH_DAY_FORMAT": "j E",
+    "NUMBER_GROUPING": 3,
     "SHORT_DATETIME_FORMAT": "d-m-Y  H:i",
     "SHORT_DATE_FORMAT": "d-m-Y",
     "THOUSAND_SEPARATOR": "\u00a0",

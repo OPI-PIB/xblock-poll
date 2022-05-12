@@ -2,10 +2,11 @@
 # Translators:
 # Maciej Kolankowski <maciej.kolankowski@opi.org.pl>, 2021
 # krystianlygas <krystian.lygas@gmail.com>, 2021
+# Emilia Dolega <emilia.dolega@opi.org.pl>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: krystianlygas <krystian.lygas@gmail.com>, 2021\n"
+"Last-Translator: Emilia Dolega <emilia.dolega@opi.org.pl>, 2021\n"
 "Language-Team: Polish (https://www.transifex.com/navoica/teams/104253/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -19,7 +20,7 @@ msgstr "Wyniki"
 #: poll/public/handlebars/poll_results.handlebars:31
 #: poll/public/handlebars/survey_results.handlebars:39
 msgid "Submit"
-msgstr "Wyślij"
+msgstr "Prześlij"
 
 #: poll/public/handlebars/poll_results.handlebars:33
 #: poll/public/handlebars/survey_results.handlebars:41
