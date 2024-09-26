@@ -139,6 +139,7 @@ function PollUtil (runtime, element, pollType) {
         var can_vote = data['can_vote'];
         $('.poll-current-count', element).text(data['submissions_count']);
         if (data['max_submissions'] > 1) {
+            $('.poll-max-submissions', element).text(data['max_submissions']);
             $('.poll-submissions-count', element).show();
         }
         if ($('div.poll-block', element).data('private')) {
@@ -181,7 +182,7 @@ function PollUtil (runtime, element, pollType) {
         else {
             if (statusChanged) {
                 if (newStatus.last_export_result.error) {
-                    self.errorMessage.text(error);
+                    self.errorMessage.text("Error: " + newStatus.last_export_result.error);
                     self.errorMessage.show();
                 } else {
                     self.downloadResultsButton.attr('disabled', false);

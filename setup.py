@@ -23,16 +23,17 @@
 
 """Setup for poll XBlock."""
 
+from __future__ import absolute_import
 import os
 from setuptools import setup
 
 
 def package_data(pkg, roots):
-    """Generic function to find package_data.
+    """
+    Generic function to find package_data.
 
     All of the files under each of the `roots` will be declared as package
     data for package `pkg`.
-
     """
     data = []
     for root in roots:
@@ -45,18 +46,25 @@ def package_data(pkg, roots):
 
 setup(
     name='xblock-poll',
-    version='1.11.1',
+    version='1.12.0',
     description='An XBlock for polling users.',
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Education',
+        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
+    ],
     packages=[
         'poll',
     ],
     install_requires=[
-        'XBlock>=1.2',
+        'XBlock<1.3',
         'markdown',
-        'ddt',
-        'mock',
+        'bleach',
     ],
-    dependency_links=['http://github.com/edx/xblock-utils/tarball/master#egg=xblock-utils'],
     entry_points={
         'xblock.v1': [
             'poll = poll:PollBlock',

@@ -21,27 +21,30 @@
 # along with this program in a file in the toplevel directory called
 # "AGPLv3".  If not, see <http://www.gnu.org/licenses/>.
 #
-from collections import OrderedDict
+from __future__ import absolute_import
+
 import functools
 import json
 import time
+from collections import OrderedDict
 
-from markdown import markdown
 import pkg_resources
-from webob import Response
-
+import six
 from django import utils
+from markdown import markdown
+from webob import Response
 from xblock.completable import XBlockCompletionMode
 from xblock.core import XBlock
-from xblock.fields import Scope, String, Dict, List, Boolean, Integer
-from xblock.fragment import Fragment
+from xblock.fields import Boolean, Dict, Integer, List, Scope, String
+from web_fragments.fragment import Fragment
 from xblockutils.publish_event import PublishEventMixin
 from xblockutils.resources import ResourceLoader
-from xblockutils.settings import XBlockWithSettingsMixin, ThemableXBlockMixin
-from .utils import _, DummyTranslationService
+from xblockutils.settings import ThemableXBlockMixin, XBlockWithSettingsMixin
+
+from .utils import DummyTranslationService, _, remove_markdown_and_html_tags
 
 try:
-    # pylint: disable=import-error
+    # pylint: disable=import-error, bad-option-value, ungrouped-imports
     from django.conf import settings
     from api_manager.models import GroupProfile
     HAS_GROUP_PROFILE = True
@@ -50,7 +53,7 @@ except ImportError:
 
 try:
     # pylint: disable=import-error
-    from static_replace import replace_static_urls
+    from common.djangoapps.static_replace import replace_static_urls
     HAS_STATIC_REPLACE = True
 except ImportError:
     HAS_STATIC_REPLACE = False
@@ -79,7 +82,7 @@ class ResourceMixin(XBlockWithSettingsMixin, ThemableXBlockMixin):
     def get_translation_content(self):
         try:
             return self.resource_string('public/js/translations/{lang}/textjs.js'.format(
-                lang=utils.translation.get_language(),
+                lang=utils.translation.to_locale(utils.translation.get_language()),
             ))
         except IOError:
             return self.resource_string('public/js/translations/en/textjs.js')
@@ -133,8 +136,8 @@ class CSVExportMixin(object):
 
         # Make sure we nail down our state before sending off an asynchronous task.
         async_result = export_csv_data.delay(
-            unicode(getattr(self.scope_ids, 'usage_id', None)),
-            unicode(getattr(self.runtime, 'course_id', 'course_id')),
+            six.text_type(getattr(self.scope_ids, 'usage_id', None)),
+            six.text_type(getattr(self.runtime, 'course_id', 'course_id')),
         )
         if not async_result.ready():
             self.active_export_task_id = async_result.id
@@ -183,7 +186,10 @@ class CSVExportMixin(object):
         return dict(report_store.links_for(course_key)).get(self.last_export_result['report_filename'])
 
     def student_module_queryset(self):
-        from courseware.models import StudentModule  # pylint: disable=import-error
+        try:
+            from lms.djangoapps.courseware.models import StudentModule  # pylint: disable=import-error
+        except RuntimeError:
+            from courseware.models import StudentModule
         return StudentModule.objects.select_related('student').filter(
             course_id=self.runtime.course_id,
             module_state_key=self.scope_ids.usage_id,
@@ -198,7 +204,7 @@ class CSVExportMixin(object):
             else:
                 self.last_export_result = {'error': u'Unexpected result: {}'.format(repr(task_result.result))}
         else:
-            self.last_export_result = {'error': unicode(task_result.result)}
+            self.last_export_result = {'error': six.text_type(task_result.result)}
 
     def prepare_data(self):
         """
@@ -267,7 +273,7 @@ class PollBase(XBlock, ResourceMixin, PublishEventMixin):
         if hasattr(self, 'location'):
             return self.location.html_id()  # pylint: disable=no-member
 
-        return unicode(self.scope_ids.usage_id)
+        return six.text_type(self.scope_ids.usage_id)
 
     def img_alt_mandatory(self):
         """
@@ -425,7 +431,7 @@ class PollBase(XBlock, ResourceMixin, PublishEventMixin):
         def wrapper(self, request_json, suffix=''):
             response = json.dumps(func(self, request_json, suffix))
             response = replace_static_urls(response, course_id=self.runtime.course_id)
-            return Response(response, content_type='application/json')
+            return Response(response, content_type='application/json', charset='utf8')
 
         if HAS_STATIC_REPLACE:
             # Only use URL translation if it is available
@@ -474,7 +480,7 @@ class PollBlock(PollBase, CSVExportMixin):
             if key not in self.tally:
                 self.tally[key] = 0
 
-        for key in self.tally.keys():
+        for key in list(self.tally):
             if key not in answers:
                 del self.tally[key]
 
@@ -550,8 +556,7 @@ class PollBlock(PollBase, CSVExportMixin):
         """
         if not context:
             context = {}
-        js_template = self.resource_string(
-            '/public/handlebars/poll_results.handlebars')
+        js_template = self.resource_string('public/handlebars/poll_results.handlebars')
 
         choice = self.get_choice()
 
@@ -578,8 +583,12 @@ class PollBlock(PollBase, CSVExportMixin):
             context.update({'tally': detail, 'total': total, 'plural': total > 1})
 
         return self.create_fragment(
-            context, "public/html/poll.html", "public/css/poll.css",
-            "public/js/poll.js", "PollBlock")
+            context,
+            template="public/html/poll.html",
+            css="public/css/poll.css",
+            js="public/js/poll.js",
+            js_init="PollBlock"
+        )
 
     def student_view_data(self, context=None):
         """
@@ -615,7 +624,7 @@ class PollBlock(PollBase, CSVExportMixin):
         if not context:
             context = {}
 
-        js_template = self.resource_string('/public/handlebars/poll_studio.handlebars')
+        js_template = self.resource_string('public/handlebars/poll_studio.handlebars')
         context.update({
             'question': self.question,
             'display_name': self.display_name,
@@ -625,8 +634,12 @@ class PollBlock(PollBase, CSVExportMixin):
             'max_submissions': self.max_submissions,
         })
         return self.create_fragment(
-            context, "public/html/poll_edit.html",
-            "/public/css/poll_edit.css", "public/js/poll_edit.js", "PollEdit")
+            context,
+            template="public/html/poll_edit.html",
+            css="public/css/poll_edit.css",
+            js="public/js/poll_edit.js",
+            js_init="PollEdit"
+        )
 
     @XBlock.json_handler
     def load_answers(self, data, suffix=''):
@@ -786,7 +799,7 @@ class PollBlock(PollBase, CSVExportMixin):
                     self.question,
                     answers_dict[choice]['label'],
                 ]
-        return [header_row] + data.values()
+        return [header_row] + list(data.values())
 
     def generate_report_data(self, user_state_iterator, limit_responses=None):
         """
@@ -820,11 +833,47 @@ class PollBlock(PollBase, CSVExportMixin):
                 continue
             report = {
                 self.ugettext('Question'): self.question,
-                self.ugettext('Answer'): answers_dict[choice]['label'],
+                self.ugettext('Answer'): answers_dict.get(choice, {}).get('label',
+                                                                          "[Removed Poll Option {}]".format(choice)),
                 self.ugettext('Submissions count'): user_state.state['submissions_count']
             }
             count += 1
             yield (user_state.username, report)
+
+    def index_dictionary(self):
+        """
+        Return dictionary prepared with module content and type for indexing.
+        """
+        # return key/value fields in a Python dict object
+        # values may be numeric / string or dict
+        # default implementation is an empty dict
+        xblock_body = super(PollBlock, self).index_dictionary()
+        answers = {
+            "option_{}".format(answer_i): remove_markdown_and_html_tags(answer[1]['label'])
+            for answer_i, answer in enumerate(self.answers)
+            if len(answer) == 2 and 'label' in answer[1] and answer[1]['label']
+        }
+        image_alt_text = {
+            "image_alt_{}".format(answer_i): answer[1]['img_alt']
+            for answer_i, answer in enumerate(self.answers)
+            if len(answer) == 2 and 'img_alt' in answer[1] and answer[1]['img_alt']
+        }
+
+        index_body = {
+            "display_name": self.display_name,
+            "question": remove_markdown_and_html_tags(self.question),
+        }
+        index_body.update(answers)
+        index_body.update(image_alt_text)
+
+        if "content" in xblock_body:
+            xblock_body["content"].update(index_body)
+        else:
+            xblock_body["content"] = index_body
+
+        xblock_body["content_type"] = "Poll"
+
+        return xblock_body
 
 
 @XBlock.wants('settings')
@@ -882,8 +931,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
         if not context:
             context = {}
 
-        js_template = self.resource_string(
-            '/public/handlebars/survey_results.handlebars')
+        js_template = self.resource_string('public/handlebars/survey_results.handlebars')
 
         choices = self.get_choices()
 
@@ -904,11 +952,15 @@ class SurveyBlock(PollBase, CSVExportMixin):
             'can_view_private_results': self.can_view_private_results(),
             # a11y: Transfer block ID to enable creating unique ids for questions and answers in the template
             'block_id': self._get_block_id(),
+            'usage_id': six.text_type(self.scope_ids.usage_id),
         })
-
         return self.create_fragment(
-            context, "public/html/survey.html", "public/css/poll.css",
-            "public/js/poll.js", "SurveyBlock")
+            context,
+            template="public/html/survey.html",
+            css="public/css/poll.css",
+            js="public/js/poll.js",
+            js_init="SurveyBlock"
+        )
 
     def student_view_data(self, context=None):
         """
@@ -956,7 +1008,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
         if not context:
             context = {}
 
-        js_template = self.resource_string('/public/handlebars/poll_studio.handlebars')
+        js_template = self.resource_string('public/handlebars/poll_studio.handlebars')
         context.update({
             'feedback': self.feedback,
             'display_name': self.block_name,
@@ -966,8 +1018,12 @@ class SurveyBlock(PollBase, CSVExportMixin):
             'multiquestion': True,
         })
         return self.create_fragment(
-            context, "public/html/poll_edit.html",
-            "/public/css/poll_edit.css", "public/js/poll_edit.js", "SurveyEdit")
+            context,
+            template="public/html/poll_edit.html",
+            css="public/css/poll_edit.css",
+            js="public/js/poll_edit.js",
+            js_init="SurveyEdit"
+        )
 
     def tally_detail(self):
         """
@@ -1033,8 +1089,9 @@ class SurveyBlock(PollBase, CSVExportMixin):
         """
         questions = dict(self.questions)
         answers = dict(self.answers)
+        # pylint: disable=bad-option-value, consider-iterating-dictionary
         default_answers = {answer: 0 for answer in answers.keys()}
-        for key in questions.keys():
+        for key in questions.keys():  # pylint: disable=bad-option-value, consider-iterating-dictionary
             if key not in self.tally:
                 self.tally[key] = dict(default_answers)
             else:
@@ -1047,7 +1104,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
                         del new_answers[existing_key]
                 self.tally[key] = new_answers
         # Keys for questions that no longer exist can break calculations.
-        for key in self.tally.keys():
+        for key in list(self.tally):
             if key not in questions:
                 del self.tally[key]
 
@@ -1163,7 +1220,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
 
         # Make sure the answer values are sane.
         for key, value in data.items():
-            if value not in answers.keys():
+            if value not in answers:
                 result['success'] = False
                 result['errors'].append(
                     self.ugettext(
@@ -1292,7 +1349,7 @@ class SurveyBlock(PollBase, CSVExportMixin):
                         choice = choices[q[0]]
                         row.append(answers_dict[choice])
                 data[sm.student.id] = row
-        return [header_row + questions] + data.values()
+        return [header_row + questions] + list(data.values())
 
     def generate_report_data(self, user_state_iterator, limit_responses=None):
         """
@@ -1325,8 +1382,9 @@ class SurveyBlock(PollBase, CSVExportMixin):
                     # End the iterator here
                     return
 
-                question = questions_dict[question_id]['label']
-                answer = answers_dict[answer_id]
+                question = questions_dict.get(question_id, {}).get('label',
+                                                                   "[Removed Survey Question {}]".format(question_id))
+                answer = answers_dict.get(answer_id) or "[Removed Survey Option {}]".format(answer_id)
                 report = {
                     self.ugettext('Question'): question,
                     self.ugettext('Answer'): answer,
@@ -1334,3 +1392,44 @@ class SurveyBlock(PollBase, CSVExportMixin):
                 }
                 count += 1
                 yield (user_state.username, report)
+
+    def index_dictionary(self):
+        """
+        Return dictionary prepared with module content and type for indexing.
+        """
+        # return key/value fields in a Python dict object
+        # values may be numeric / string or dict
+        # default implementation is an empty dict
+        xblock_body = super(SurveyBlock, self).index_dictionary()
+
+        questions = {
+            "question_{}".format(question_i): remove_markdown_and_html_tags(question[1]['label'])
+            for question_i, question in enumerate(self.questions)
+            if len(question) == 2 and 'label' in question[1] and question[1]['label']
+        }
+        answers = {
+            "option_{}".format(answer_i): remove_markdown_and_html_tags(answer[1])
+            for answer_i, answer in enumerate(self.answers)
+            if len(answer) == 2 and answer[1]
+        }
+        image_alt_text = {
+            "image_alt_{}".format(question_i): question[1]['img_alt']
+            for question_i, question in enumerate(self.questions)
+            if len(question) == 2 and 'img_alt' in question[1] and question[1]['img_alt']
+        }
+
+        index_body = {
+            "display_name": self.display_name,
+        }
+        index_body.update(questions)
+        index_body.update(answers)
+        index_body.update(image_alt_text)
+
+        if "content" in xblock_body:
+            xblock_body["content"].update(index_body)
+        else:
+            xblock_body["content"] = index_body
+
+        xblock_body["content_type"] = "Survey"
+
+        return xblock_body
